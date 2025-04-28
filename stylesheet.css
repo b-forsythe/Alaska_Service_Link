@@ -1,0 +1,96 @@
+/* Global reset for margins and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* hr specific styles */
+hr {
+    margin: 0; /* Remove any margin around the <hr> */
+    padding: 0; /* Remove any padding */
+    border: none; /* Remove the default border */
+    height: 1px; /* Set the height of the line */
+    background-color: #000; /* Set the line color */
+}
+
+/* Dashboard quick look */
+.quick_look {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto; /* Center the container */
+    padding: 20px;
+    background-color: #92d7c79c;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.307); /* Subtle shadow */
+    border-radius: 8px;
+}
+
+/* Dashboard container */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
+    grid-template-rows: auto; /* Rows adjust based on content */
+    gap: 40px 10px;
+    padding: 20px;
+}
+
+/* Grid items (boxes) */
+.box {
+    background-color: #000000;
+    color: black;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid #000000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Box size adjustments */
+.box-1, .box-2, .box-3, .box-4, .box-5, .box-6 {
+    width: 500px;
+    margin: 0 auto;
+}
+
+/* Specific box sizes */
+.box-1 {
+    grid-column: span 1; /* This box spans across both columns */
+    height: 100px;
+    background-color: #ffffff;
+}
+
+.box-2 {
+    grid-column: span 1;
+    height: 70px;
+    background-color: #ffffff;
+}
+
+.box-3 {
+    grid-column: span 1;
+    height: 50px;
+    background-color: #ffffff;
+}
+
+.box-4 {
+    grid-column: span 1; /* This box spans across both columns */
+    height: 50px;
+    background-color: #ffffff;
+}
+
+.box-5 {
+    grid-column: span 1;
+    height: 40px;
+    background-color: #ffffff;
+}
+
+.box-6 {
+    grid-column: span 1;
+    height: 40px;
+    background-color: #ffffff;
+}
+
+/* Responsive behavior */
+@media screen and (max-width: 768px) {
+    .dashboard {
+        grid-template-columns: 1fr; /* Stack items into 1 column on smaller screens */
+    }
+}
