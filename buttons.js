@@ -29,7 +29,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     handleButtonClick("home", function() {
-        window.location.href="/index.html";
+        window.location.href="/index";
+    });
+
+    handleButtonClick("browse", function() {
+        window.location.href="/browse";
     });
 
 });
