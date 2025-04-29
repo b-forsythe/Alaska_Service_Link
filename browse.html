@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Page Title</title>
+    <link rel="stylesheet" href="./stylesheet.css">
 </head>
 <body>
-    <h1>Welcome to Your Website</h1>
-    <p>This is a basic HTML page.</p>
+    <div style="display:flex; justify-content:space-between;align-items:center;">
+        <h1 style="padding:2%;"> Alaska Service Link </h1>
+        <input type="button" id="home" value="Home" style="padding:1%;">
+    </div>
+    <hr style="margin-bottom:5%"/>
+
+    <div style="display:flex; justify-content: space-between; padding-bottom:4%">
+        <input type="button" id="filter1" value="Filter 1">
+        <input type="button" id="filter2" value="Filter 2">
+        <input type="button" id="filter3" value="Filter 3">
+        <input type="button" id="filter4" value="Filter 4">
+
+    </div>
+
+    <div class="listing">
+        <h3 class="listing_title">Help Installing Windows</h3>
+        <p class="listing_location">Location: Anchorage, AK</p>
+        <p class="listing_description">I need help installing windows in my house. I have the windows, but I need someone to help me install them.</p>
+    
+        <div class="button-wrapper">
+            <input class="view_full" type="button" id="view_full" value="View Full Listing">
+            <input class="haptic_browser" type="button" id="apply" value="Connect with Client">
+            
+        </div>
+    </div>
+    
+
+    <script src="./buttons.js"></script>
 </body>
 </html>
