@@ -2,27 +2,84 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="./forms.css">
+    <link rel="stylesheet" href="./assets/forms.css">
     <meta charset="UTF-8">
 </head>
 <body>
-    <form id="projectForm">
+    <form id="projectForm" action="submit_project.php" method="POST">
         <h2>Post a New Project</h2>
+        <h3> Step 1: What do you need help with?</h4>
+        <fieldset>
+            <div>
+                <input type="radio" id="handyman" name="workType" value="Handyman Services"/>
+                <label for="handyman">Handyman Services</label>
+                <br/>
+                <input type="radio" id="plumbing" name="workType" value="Plumbing"/>
+                <label for="plumbing">Plumbing</label>
+                <br/>
+                <input type="radio" id="electrical" name="workType" value="Electrical"/>
+                <label for="electrical">Electrical</label>
+                <br/>
+                <input type="radio" id="carpentry" name="workType" value="Carpentry"/>
+                <label for="carpentry">Carpentry</label>
+                <br/>
+                <input type="radio" id="cleaning" name="workType" value="Cleaning"/>
+                <label for="cleaning">Cleaning</label>
+                <br/>
+                <input type="radio" id="painting" name="workType" value="painting"/>
+                <label for="painting">Painting</label>
+                <br/>
+                <input type="radio" id="other" name="workType" value="Other"/>
+                <label for="other">Other</label>
+                <input type="text" id="otherWorkType" name="otherWorkType" placeholder="Please specify" style="max-width:300px; height: 1px; margin-left:1%"/>
+            </div>
 
-        <label for="title">Project Title:</label>
-        <input type="text" id="title" name="title" required>
 
-        <label for="location">Location:</label>
-        <input type="text" id="location" name="location" required>
+        </fieldset> 
+        <h3>Step 2: Describe the Project</h3>
+        <label for="description">Tell us what needs doing, be as detailed as possible.</label>
+        <textarea type="text" id="description" name="description" rows="5" required> </textarea>
 
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" rows="5" required></textarea>
+        <h3> Step 3: Location</h3>
+        <input type="text" id="location" name="location" placeholder="Address or General Area" required>
+        <input type="checkbox" id="isRemote" name="locationCheck" value="isRemote">
+        <label for="isRemote"> This is a Remote Location </label>
+        <input type="checkbox" id="isFlexible" name="locationCheck" value="isFlexible">
+        <label for="isFlexible"> Deadline is Flexible </label>
+        <br/>
+        
+        <h3> Step 4: Timing and Budget </h3>
+        <label for="deadline"> When do you need the Project finished by?</label>
+        <fieldset>
+            <div>
+                <input type="radio" id="ASAP" name="deadline" value="ASAP"/>
+                <label for="ASAP">ASAP</label>
+                <br/>
+                <input type="radio" id="withinWeek" name="deadline" value="1-2 Weeks"/>
+                <label for="withinWeek">1-2 Weeks</label>
+                <br/>
+                <input type="radio" id="withinMonth" name="deadline" value="1-2 Months"/>
+                <label for="withinMonth">1-2 Months</label>
+                <br/>
+                <input type="radio" id="moreMonths" name="deadline" value="3+ Months"/>
+                <label for="moreMonths">3+ Months</label>
+            </div>
+        </fieldset>
+        <br/>
+        <label for="budget">What is your budget for this project?</label>
+        <input type="text" id="budget" name="budget" placeholder="Enter your budget" required>
 
-        <label for="budget">Estimated Budget:</label>
-        <input type="number" id="budget" name="budget" min="0">
 
-        <label for="deadline">Deadline:</label>
-        <input type="date" id="deadline" name="deadline">
+        <h3> Step 5: Contact Information </h3>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Your Name" required>
+        <br/>
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" placeholder="Your Email" required>
+        <br/>
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" placeholder="Your Phone Number" required>
+        <br/>  
 
         <input type="submit" value="Submit Project">
     </form>

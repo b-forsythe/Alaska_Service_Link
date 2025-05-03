@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     handleButtonClick("login", function() {
-        window.location.href = "/login";
+        window.location.href = "/login.html";
     });
 
     handleButtonClick("contractor_login", function() {
@@ -29,11 +29,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     handleButtonClick("home", function() {
-        window.location.href="/index";
+        window.location.href="/index.html";
     });
 
     handleButtonClick("browse", function() {
-        window.location.href="/browse";
+        window.location.href="/browse.html";
     });
 
 });

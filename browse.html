@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="./stylesheet.css">
+    <link rel="stylesheet" href="./assets/stylesheet.css">
 </head>
 <body>
     <div style="display:flex; justify-content:space-between;align-items:center;">
@@ -15,21 +15,38 @@
         <input type="button" id="filter2" value="Filter 2">
         <input type="button" id="filter3" value="Filter 3">
         <input type="button" id="filter4" value="Filter 4">
-
     </div>
 
-    <div class="listing">
-        <h3 class="listing_title">Help Installing Windows</h3>
-        <p class="listing_location">Location: Anchorage, AK</p>
-        <p class="listing_description">I need help installing windows in my house. I have the windows, but I need someone to help me install them.</p>
+    <div id="listing"></div> <!-- This is the container to display the listings -->
     
-        <div class="button-wrapper">
-            <input class="view_full" type="button" id="view_full" value="View Full Listing">
-            <input class="haptic_browser" type="button" id="apply" value="Connect with Client">
-            
-        </div>
-    </div>
-    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch('fetch_projects.php')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById("listing");  // Updated this line
+                    container.innerHTML = ""; // Clear existing listings
+        
+                    data.forEach(project => {
+                        const listing = document.createElement("div");
+                        listing.className = "listing";
+                        listing.innerHTML = `
+                            <h3 class="listing_title">${project.work_type}</h3>
+                            <p class="listing_location">Location: ${project.location}</p>
+                            <p class="listing_description">${project.description}</p>
+                            <div class="button-wrapper">
+                                <input class="view_full" type="button" value="View Full Listing">
+                                <input class="haptic_browser" type="button" value="Connect with Client">
+                            </div>
+                        `;
+                        container.appendChild(listing);
+                    });
+                })
+                .catch(error => {
+                    console.error("Error loading listings:", error);
+                });
+        });
+    </script>
 
     <script src="./buttons.js"></script>
 </body>
