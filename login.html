@@ -5,12 +5,13 @@
         <link rel="stylesheet" href="./stylesheet.css">
     </head>
     <body>
-        <div style="text-align:center;">
-            <input type="button" id="contractor_login" value="I am a Contractor" />
-            <input type="button" id="client_login" value="I am a Client" />
-            <input type="button" id="admin_login" value="I am an Admin" />
-            
-        </div>
+       <h2 style="display:flex; justify-content: center; align-items: center;"> Login to your Account</h2>
+       <p style=" display:flex; justify-content: center; color:rgb(161, 157, 157)"> Welcome Back! </p>
+
+       <input type="text" id="username" placeholder="Username" style="display:flex; justify-content: center; margin-left: 35%; margin-top: 5%; width: 30%; height: 5%; padding: 1%; border-radius: 5px; border: 1px solid #ccc;">
+       <input type="password" id="password" placeholder="Password" style="display:flex; justify-content: center; margin-left: 35%; margin-top: 5%; width: 30%; height: 5%; padding: 1%; border-radius: 5px; border: 1px solid #ccc;">
+
+         <input action="submit_credentials.php" type="button" id="login" value="Login" style="display:flex; justify-content: center; margin-left: 35%; margin-top: 5%; width: 30%; height: 5%; padding: 1%; border-radius: 5px; border: 1px solid #ccc; background-color: #4c53af; color: white;">
         
         <script src="buttons.js"></script>
     </body>
