@@ -1,21 +1,41 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="./stylesheet.css">
-    </head>
-    <body>
-        <div class="register_box">
-       <h2 style="display:flex; justify-content: center; align-items: center;"> Register Account </h2>
-       <p style=" display:flex; justify-content: center; color:rgb(161, 157, 157)"> Welcome! </p>
-
-        <input type="text" id="username" placeholder="Username" style="display:flex; justify-content: center; margin-left: 35%; margin-top: 5%; width: 30%; height: 5%; padding: 1%; border-radius: 5px; border: 1px solid #ccc;" required>
-        <input type="password" id="password" placeholder="Password" style="display:flex; justify-content: center; margin-left: 35%; margin-top: 5%; width: 30%; height: 5%; padding: 1%; border-radius: 5px; border: 1px solid #ccc;"required>
-        <input type="email" id="email" placeholder="Email" style="display:flex; justify-content: center; margin-left: 35%; margin-top: 5%; width: 30%; height: 5%; padding: 1%; border-radius: 5px; border: 1px solid #ccc;" required>
-        <input type="text" id="phone" placeholder="Phone Number" style="display:flex; justify-content: center; margin-left: 35%; margin-top: 5%; width: 30%; height: 5%; padding: 1%; border-radius: 5px; border: 1px solid #ccc;" required>
-         <input action="submit_credentials.php" type="button" id="login" value="Login" style="display:flex; justify-content: center; margin-left: 35%; margin-top: 5%; width: 30%; height: 5%; padding: 1%; border-radius: 5px; border: 1px solid #ccc; background-color: #4c53af; color: white;">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="./assets/register.css">
+</head>
+<body>
+    <div class="register-wrapper">
+      <div class="register-container">
         
-        <script src="buttons.js"></script>
+        <!-- Left Side -->
+        <div class="left-panel">
+            <div class="logo-circle">
+              <img src="./assets/aksl1_no_underline.svg" alt="Logo" class="logo" />
+            </div>
+          </div>
+          
+  
+        <!-- Right Side (Form) -->
+        <div class="right-panel">
+          <div class="register-box">
+            <h2>Register Account</h2>
+            <p>Welcome!</p>
+              <form action="submit_credentials.php" method="POST">
+                <input type="text" id="username" name="username" placeholder="Username" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <input type="text" id="name" name="name" placeholder="Full Name" required>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                <input type="text" id="phone" name="phone" placeholder="Phone Number" required>
+                <input type="submit" id="login" value="Register">
+              </form>
+
+          </div>
         </div>
-    </body>
+  
+      </div>
+    </div>
+  </body>
+  
 </html>

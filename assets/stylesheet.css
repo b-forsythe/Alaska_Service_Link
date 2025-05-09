@@ -133,9 +133,11 @@ hr {
 
 .header_button {
     background-color: #2698c6ff;
-    color: rgb(226, 221, 221);
-    border: 2px solid #000000;
-    border-radius: 5px;
+    color: #e2dddd;
+    border-radius: 999px;
+    font-weight:bold;
+    font-family: "DM Sans", sans-serif;
+    cursor: pointer;
     font-size: 14px;
     padding-right: 5%;
     padding-left:5%;
@@ -143,6 +145,12 @@ hr {
     padding-bottom: 2%;
     margin-left: 10px;
     margin-right: 100px;
+
+    border:none;
+    outline:none;
+}
+.header_button:hover {
+    background-color: #254e58;
 }
 .landing_blurb{
     background-color:#2698c6ff;
@@ -160,13 +168,12 @@ hr {
 .sign_up_button{
     background: #2698c6ff;
     border-radius: 999px;
-    box-shadow: #2698c6ff 0 10px 20px -10px;
     box-sizing: border-box;
     color: #FFFFFF;
     cursor: pointer;
     font-family: "DM Sans", sans-serif;
     font-size: 18px;
-    font-weight: 200;
+    font-weight: bold;
     line-height: 40px;
     opacity: 1;
     outline: 0 solid transparent;
@@ -178,6 +185,48 @@ hr {
     word-break: break-word;
     border: 0;
 }
+.sign_up_button:hover{
+    background: #254E58;
+}
+
+/* 4085A0 | 054A65 | 012431 | 146E91 */
+
+
+.collapsible-container {
+    width: 100%;
+    max-width: 95%;
+    margin-bottom:4%;
+    margin-left:1%;
+  }
+  
+  .collapsible {
+    background-color: #2698c6;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: 2px solid #112d32;
+    border-radius: 5px;
+    text-align: left;
+    outline: none;
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+  }
+  
+  .content {
+    width: 100%;
+    padding: 3%;
+    display: none;
+    overflow: hidden;
+    background-color: #254e586b;
+    font-family: "DM Sans", sans-serif;
+    box-sizing: border-box; /* Ensure padding doesn't overflow width */
+  }
+  
+  .active, .collapsible:hover {
+    background-color: #254e58;
+  }
+  
 
 /* Responsive behavior */
 @media screen and (max-width: 768px) {

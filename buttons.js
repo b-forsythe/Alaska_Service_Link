@@ -12,12 +12,11 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("HOW IT WORKS!");
     });
 
-    handleButtonClick("login", function() {
-        window.location.href = "/login.html";
+    handleButtonClick("_register", function() {
+        window.location.href="/register.html";
     });
-
-    handleButtonClick("contractor_login", function() {
-        console.log("Logging in as Contractor");
+    handleButtonClick("_contractorlogin", function() {
+        window.location.href="/login.html";
     });
 
     handleButtonClick("client_login", function() {
@@ -34,6 +33,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     handleButtonClick("browse", function() {
         window.location.href="/browse.html";
+    });
+
+    handleButtonClick("FAQ", function(){
+        window.location.href="/faq.html";
     });
 
 });
