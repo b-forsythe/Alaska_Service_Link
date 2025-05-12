@@ -8,10 +8,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Event listeners for each button
-    handleButtonClick("how_work", function() {
-        console.log("HOW IT WORKS!");
+    handleButtonClick("login", function() {
+        window.location.href="/login.html";
     });
-
     handleButtonClick("_register", function() {
         window.location.href="/register.html";
     });

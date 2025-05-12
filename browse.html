@@ -1,24 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="./assets/stylesheet.css">
+    <link rel="stylesheet" href="./assets/listings.css">
+
 </head>
+
 <body>
-    <div style="display:flex; justify-content:space-between;align-items:center;">
-        <h1 style="padding:2%;"> Alaska Service Link </h1>
-        <input type="button" id="home" value="Home" style="padding:1%;">
-    </div>
-    <hr style="margin-bottom:5%"/>
+    <div class="browse-page">
+        <div style="display:flex; justify-content: space-between; align-items: center;">
+            <img src="./assets/aksl1_no_underline.svg" alt="Logo" style="width: 20%; height:auto">
+            <div style="display: flex; gap:12px">
+                <input class="header_button" type="button" id="FAQ" value="FAQ" />
+                <input class="header_button" type="button" id="profile" value="My Dashboard">
+            </div>
+        </div>
+        <hr style="margin-bottom:5%" />
+        `
+        <!-- Begin Sidebar -->
+        <div class="browse-wrapper">
+            <div class="sidebar">
+                <button class="sidebar-button">Filter 1</button>
+                <button class="sidebar-button">Filter 2</button>
+                <!-- more filters -->
+            </div>
+            <!-- begin Listings -->
+            <div class="listing-container">
 
-    <div style="display:flex; justify-content: space-between; padding-bottom:4%">
-        <input type="button" id="filter1" value="Filter 1">
-        <input type="button" id="filter2" value="Filter 2">
-        <input type="button" id="filter3" value="Filter 3">
-        <input type="button" id="filter4" value="Filter 4">
+            </div>
+        </div>
     </div>
 
-    <div id="listing"></div> <!-- This is the container to display the listings -->
-    
+    <!--   <div class="listing-container">
+        <div class="listing">
+            <h3 class="listing_title">${project.work_type}</h3>
+            <p class="listing_location">Location: ${project.location}</p>
+            <p class="listing_description">${project.description}</p>
+        </div>
+        <div class="listing">...</div>
+    </div>
+</div> -->
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             fetch('fetch_projects.php')
@@ -26,18 +49,20 @@
                 .then(data => {
                     const container = document.getElementById("listing");  // Updated this line
                     container.innerHTML = ""; // Clear existing listings
-        
+
                     data.forEach(project => {
                         const listing = document.createElement("div");
                         listing.className = "listing";
                         listing.innerHTML = `
-                            <h3 class="listing_title">${project.work_type}</h3>
-                            <p class="listing_location">Location: ${project.location}</p>
-                            <p class="listing_description">${project.description}</p>
-                            <div class="button-wrapper">
-                                <input class="view_full" type="button" value="View Full Listing">
-                                <input class="haptic_browser" type="button" value="Connect with Client">
-                            </div>
+                                            <div class="listing">
+                                                <h3 class="listing_title">${project.work_type}</h3>
+                                                <p class="listing_location">Location: ${project.location}</p>
+                                                <p class="listing_description">${project.description}</p>
+                                                <div class="button-wrapper">
+                                                    <input class="view_full" type="button" value="View Full Listing">
+                                                    <input class="haptic_browser" type="button" value="Connect with Client">
+                                                </div>
+                                            </div>
                         `;
                         container.appendChild(listing);
                     });
@@ -50,4 +75,5 @@
 
     <script src="./buttons.js"></script>
 </body>
+
 </html>

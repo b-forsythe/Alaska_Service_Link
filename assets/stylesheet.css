@@ -87,21 +87,7 @@ hr {
     height: 40px;
     background-color: #ffffff;
 }
-.listing {
-    background-color: #ffffff;
-    color: black;
-    padding: 20px;
-    border-radius: 10px;
-    border: 2px double #000000;
-    border-radius:15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 45%;
-}
-.listing_location{
-    color:rgb(152, 152, 152);
-    padding-bottom:10px;
-    font-size: 13px;
-}
+
 .view_full{
     background-color: #e3e3e3;
     color:rgb(0, 0, 0);
