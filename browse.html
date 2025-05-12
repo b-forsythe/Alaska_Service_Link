@@ -54,16 +54,18 @@
                         const listing = document.createElement("div");
                         listing.className = "listing";
                         listing.innerHTML = `
-                                            <div class="listing">
-                                                <h3 class="listing_title">${project.work_type}</h3>
-                                                <p class="listing_location">Location: ${project.location}</p>
-                                                <p class="listing_description">${project.description}</p>
-                                                <div class="button-wrapper">
-                                                    <input class="view_full" type="button" value="View Full Listing">
-                                                    <input class="haptic_browser" type="button" value="Connect with Client">
-                                                </div>
-                                            </div>
-                        `;
+    <div class="listing">
+        <h3 class="listing_title">${project.work_type}</h3>
+        <p class="listing_location">Location: ${project.location}</p>
+        <p class="listing_description">${project.other_details || ''}</p>
+        ${project.img ? `<button onclick="toggleImage(this)">Show Image</button><br><img src="${project.img}" style="display:none; max-width:100%; margin-top:10px;" />` : ''}
+        <div class="button-wrapper">
+            <input class="view_full" type="button" value="View Full Listing">
+            <input class="haptic_browser" type="button" value="Connect with Client">
+        </div>
+    </div>
+`;
+
                         container.appendChild(listing);
                     });
                 })
@@ -74,6 +76,20 @@
     </script>
 
     <script src="./buttons.js"></script>
+
+    <script>
+    function toggleImage(button) {
+        const img = button.nextElementSibling;
+        if (img.style.display === "none") {
+            img.style.display = "block";
+            button.textContent = "Hide Image";
+        } else {
+            img.style.display = "none";
+            button.textContent = "Show Image";
+        }
+    }
+</script>
+
 </body>
 
 </html>
