@@ -212,6 +212,21 @@ hr {
   .active, .collapsible:hover {
     background-color: #254e58;
   }
+
+  .cont_blurbWrap{
+    padding:4%;
+    width:90%;
+    height:50%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+  .cont_blurb {
+    font-family: "DM Sans", sans-serif;
+    font-size: 24px;
+    text-align: center;
+  }
   
 
 /* Responsive behavior */

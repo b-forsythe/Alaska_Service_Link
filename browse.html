@@ -4,92 +4,225 @@
 <head>
     <link rel="stylesheet" href="./assets/stylesheet.css">
     <link rel="stylesheet" href="./assets/listings.css">
-
 </head>
 
 <body>
     <div class="browse-page">
+        <!-- Header -->
         <div style="display:flex; justify-content: space-between; align-items: center;">
-            <img src="./assets/aksl1_no_underline.svg" alt="Logo" style="width: 20%; height:auto">
+            <img src="./assets/aksl1_no_underline.svg" alt="Logo" style="width: 15%; height:auto">
+
             <div style="display: flex; gap:12px">
                 <input class="header_button" type="button" id="FAQ" value="FAQ" />
-                <input class="header_button" type="button" id="profile" value="My Dashboard">
+                <input class="header_button" type="button" id="profile" value="My Dashboard"
+                    onclick="window.location.href='redirect.php'">
             </div>
         </div>
         <hr style="margin-bottom:5%" />
-        `
-        <!-- Begin Sidebar -->
+
+        <!-- Floating Post Button -->
+        <button class="floating-post-button" onclick="window.location.href='submit_form.html'">
+            Post a Project
+        </button>
+
         <div class="browse-wrapper">
+            <!-- Sidebar Filters -->
             <div class="sidebar">
-                <button class="sidebar-button">Filter 1</button>
-                <button class="sidebar-button">Filter 2</button>
-                <!-- more filters -->
+                <div>
+                    <button class="filter-button" onclick="toggleDropdown('locationFilterBox')">Location</button>
+                    <div id="locationFilterBox">
+                        <label><input type="checkbox" value="Anchorage" class="filter-location"> Anchorage</label><br>
+                        <label><input type="checkbox" value="Fairbanks" class="filter-location"> Fairbanks</label><br>
+                        <label><input type="checkbox" value="Mat-su Borough" class="filter-location"> Mat-su
+                            Borough</label><br>
+                    </div>
+                </div>
+                <div>
+                    <button class="filter-button" onclick="toggleDropdown('budgetFilterBox')">Budget</button>
+                    <div id="budgetFilterBox">
+                        <label><input type="checkbox" value="1k" class="filter-budget"> Under $1k</label><br>
+                        <label><input type="checkbox" value="5k" class="filter-budget"> Under $5k</label><br>
+                        <label><input type="checkbox" value="10k" class="filter-budget"> Under $10k</label><br>
+                        <label><input type="checkbox" value="10k+" class="filter-budget"> $10k+</label><br>
+                    </div>
+                </div>
+                <div>
+                    <button class="filter-button" onclick="toggleDropdown('deadlineFilterBox')">Deadline</button>
+                    <div id="deadlineFilterBox">
+                        <label><input type="checkbox" value="ASAP" class="filter-deadline"> ASAP</label><br>
+                        <label><input type="checkbox" value="3 Months" class="filter-deadline"> 3 Months</label><br>
+                        <label><input type="checkbox" value="6 Months" class="filter-deadline"> 6 Months</label><br>
+                        <label><input type="checkbox" value="12 Months" class="filter-deadline"> 12 Months+</label><br>
+                    </div>
+                </div>
+                <div>
+                    <button class="filter-button" onclick="toggleDropdown('workTypeFilterBox')">Work Type</button>
+                    <div id="workTypeFilterBox">
+                        <label><input type="checkbox" value="Repair" class="filter-work"> Repair</label><br>
+                        <label><input type="checkbox" value="Install" class="filter-work"> Install</label><br>
+                        <label><input type="checkbox" value="Remodel" class="filter-work"> Remodel</label><br>
+                        <label><input type="checkbox" value="New Construction" class="filter-work"> New
+                            Construction</label><br>
+                        <label><input type="checkbox" value="Retro-Fit" class="filter-work"> Retro-Fit</label><br>
+                    </div>
+                </div>
+                <button class="apply-filter" onclick="applyFilters()">Apply Filters</button>
             </div>
-            <!-- begin Listings -->
-            <div class="listing-container">
 
-            </div>
+            <!-- Listings -->
+            <div class="listing-container" id="listing"></div>
         </div>
     </div>
-
-    <!--   <div class="listing-container">
-        <div class="listing">
-            <h3 class="listing_title">${project.work_type}</h3>
-            <p class="listing_location">Location: ${project.location}</p>
-            <p class="listing_description">${project.description}</p>
-        </div>
-        <div class="listing">...</div>
-    </div>
-</div> -->
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            fetch('fetch_projects.php')
+        function toggleDropdown(id) {
+            const el = document.getElementById(id);
+            el.style.display = (el.style.display === 'none') ? 'block' : 'none';
+        }
+
+        function applyFilters() {
+            const getCheckedValues = (cls) => Array.from(document.querySelectorAll(`.${cls}:checked`)).map(cb => cb.value);
+
+            const locations = getCheckedValues('filter-location');
+            const budgets = getCheckedValues('filter-budget');
+            const deadlines = getCheckedValues('filter-deadline');
+            const works = getCheckedValues('filter-work');
+
+            const params = new URLSearchParams();
+            if (locations.length) params.append('locations', locations.join(','));
+            if (budgets.length) params.append('budgets', budgets.join(','));
+            if (deadlines.length) params.append('deadlines', deadlines.join(','));
+            if (works.length) params.append('works', works.join(','));
+
+            fetch(`fetch_projects.php?${params.toString()}`)
                 .then(response => response.json())
                 .then(data => {
-                    const container = document.getElementById("listing");  // Updated this line
-                    container.innerHTML = ""; // Clear existing listings
+                    const container = document.getElementById("listing");
+                    container.innerHTML = "";
 
                     data.forEach(project => {
                         const listing = document.createElement("div");
                         listing.className = "listing";
+
+                        const galleryHTML = project.images && project.images.length > 0 ? `
+                    <div class="image-gallery" style="display:none; margin-top:10px;">
+                        ${project.images.map(path => `<img src="${path}" style="max-width:100%; margin-bottom:10px;" />`).join('')}
+                    </div>
+                ` : '';
+
                         listing.innerHTML = `
-    <div class="listing">
-        <h3 class="listing_title">${project.work_type}</h3>
-        <p class="listing_location">Location: ${project.location}</p>
-        <p class="listing_description">${project.other_details || ''}</p>
-        ${project.img ? `<button onclick="toggleImage(this)">Show Image</button><br><img src="${project.img}" style="display:none; max-width:100%; margin-top:10px;" />` : ''}
-        <div class="button-wrapper">
-            <input class="view_full" type="button" value="View Full Listing">
-            <input class="haptic_browser" type="button" value="Connect with Client">
-        </div>
-    </div>
-`;
+                        <h3 class="listing_title">${project.work_type}</h3>
+                        <p class="listing_location">Location: ${project.location} | Budget: ${project.budget} | Deadline: ${project.deadline}</p>
+                        <p class="listing_description project-description">
+                            ${project.limitations?.length > 100
+                                ? `<span class="short-text">${project.limitations.slice(0, 100)}...</span>
+                                <span class="full-text" style="display:none;">${project.limitations}</span>
+                                <button class="read-more" onclick="toggleDescription(this)">Read More</button>`
+                                : project.limitations || ''}
+                        </p>
+                        <div class="button-wrapper">
+                            <input class="view_full" type="button" value="View Images" onclick="toggleGallery(this)">
+                            <input class="haptic_browser" type="button" value="Connect with Client" onclick="expressInterest(${project.id})">
+                        </div>
+                        ${galleryHTML}
+                    `;
+
 
                         container.appendChild(listing);
                     });
-                })
-                .catch(error => {
-                    console.error("Error loading listings:", error);
                 });
-        });
-    </script>
+        }
 
-    <script src="./buttons.js"></script>
+        document.addEventListener("DOMContentLoaded", applyFilters);
+
+        function toggleGallery(button) {
+            const listing = button.closest(".listing");
+            const gallery = listing.querySelector(".image-gallery");
+            if (!gallery) return;
+
+            const isVisible = gallery.style.display === "block";
+            gallery.style.display = isVisible ? "none" : "block";
+            button.value = isVisible ? "View Images" : "Hide Images";
+        }
+
+        function toggleDescription(button) {
+            const parent = button.closest(".project-description");
+            const shortText = parent.querySelector(".short-text");
+            const fullText = parent.querySelector(".full-text");
+
+            if (fullText.style.display === "none") {
+                fullText.style.display = "inline";
+                shortText.style.display = "none";
+                button.textContent = "Read Less";
+            } else {
+                fullText.style.display = "none";
+                shortText.style.display = "inline";
+                button.textContent = "Read More";
+            }
+        }
+    </script>
+    <script src="buttons.js"></script>
 
     <script>
-    function toggleImage(button) {
-        const img = button.nextElementSibling;
-        if (img.style.display === "none") {
-            img.style.display = "block";
-            button.textContent = "Hide Image";
-        } else {
-            img.style.display = "none";
-            button.textContent = "Show Image";
+        function expressInterest(projectId) {
+            fetch('send_interest.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `id=${projectId}`
+            })
+                .then(response => response.text())
+                .then(result => {
+                    alert(result); // Replace with UI update if needed
+                })
+                .catch(error => {
+                    console.error('Error expressing interest:', error);
+                });
         }
-    }
-</script>
 
+    </script>
+
+    <style>
+        .floating-post-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #2698c6;
+            color: white;
+            border: 3px solid #000;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 14px 22px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+            cursor: pointer;
+            z-index: 999;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .floating-post-button:hover {
+            background-color: #1f7aa5;
+            transform: translateY(-2px);
+        }
+
+        .image-gallery img {
+            border-radius: 10px;
+            max-width: 100%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .read-more {
+            font-size: 13px;
+            margin-left: 8px;
+            background: none;
+            border: none;
+            color: #2698c6;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 0;
+        }
+    </style>
 </body>
 
 </html>

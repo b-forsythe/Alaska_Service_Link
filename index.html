@@ -7,9 +7,10 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
     </head>
-    <body>
+    <body style="overflow:hidden;">
         <div style="display:flex; justify-content: space-between; align-items: center;">
-            <img src="./assets/aksl1_no_underline.svg" alt="Logo" style="width: 20%; height:auto">
+            <img src="./assets/aksl1_no_underline.svg" alt="Logo" style="width: 15%; height:auto">
+
                 <div style="display: flex; gap:12px">
                     <input class="header_button" type="button" id="FAQ" value="FAQ" />
                     <input class="header_button" type="button" id="login" value="Sign In">
@@ -25,7 +26,7 @@
                     <p style="margin-top: 8px; font-family: DM Sans, sans-serif;">Connect with local customers or contractors</p>
                 </div>
                 <div>
-                    <img src="./assets/scope.svg" alt="Landing Image" style="width: 30%; margin-top: 2%;" />
+                    <img src="./assets/scope_index.svg" alt="Landing Image" style="width: 30%; margin-top: 2%;" />
                     <p style="color: #2698c6ff; margin-top: 8px; font-family: DM Sans, sans-serif;">Easy-Scope Projects</p>
 
                     <p style="margin-top: 8px; font-family: DM Sans, sans-serif;">List a job easily with our premade template to help clarify project details</p>
@@ -39,11 +40,11 @@
 
             <div style="display:flex; justify-content: space-evenly; margin-top:5%; margin-bottom:10%; gap:10%;">
                 <input class="sign_up_button" type="button" id="_register" value="Post a Project Now" />
-                <input class="sign_up_button" type="button" id="_contractorregister" value="Sign up as a Contractor" />
+                <input class="sign_up_button" type="button" id="_contractorregister" value="Sign up as a Contractor" onclick="window.location.href= './contractorReg.html'"/>
 
 
             </div>
-            
+        </div>
         
         <script src="buttons.js"></script>
     </body>
